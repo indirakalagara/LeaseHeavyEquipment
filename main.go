@@ -614,13 +614,6 @@ func (t *SimpleChaincode) deleteAsset(stub shim.ChaincodeStubInterface, args []s
         log.Critical(err)
         return nil, err 
     }
-    // push the recent state
-    err = removeAssetFromRecentState(stub, assetID)
-    if err != nil {
-        err := fmt.Errorf("deleteAsset asset %s recent state removal failed: %s", assetID, err)
-        log.Critical(err)
-        return nil, err 
-    }
     
 	return nil, nil
 }
