@@ -172,8 +172,6 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		return t.readAsset(stub, args)
     } else if function == "readAllAssets" {
 		return t.readAllAssets(stub, args)
-	} else if function == "readRecentStates" {
-		return readRecentStates(stub)
 	} else if function == "readAssetHistory" {
 		return t.readAssetHistory(stub, args)
 	} else if function == "readAssetSamples" {
