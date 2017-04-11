@@ -53,7 +53,7 @@ func (a *ArgsMap) executeRules(alerts *AlertStatus) (bool) {
 //***********************************
 
 func (alerts *AlertStatusInternal) overLoadRule (a *ArgsMap) {
-    const temperatureThreshold  float64 = 0 // (inclusive good value)
+    const LoadCarriedThreshold  float64 = 0 // (inclusive good value)
 
     tbytes, found := getObject(*a, "LoadCarried")
     if found {
@@ -65,7 +65,7 @@ func (alerts *AlertStatusInternal) overLoadRule (a *ArgsMap) {
             }
         }
     }
-    alerts.clearAlert(AlertsOVERTEMP)
+    alerts.clearAlert(AlertsOVERLOAD)
 }
 
 //***********************************
