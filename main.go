@@ -341,13 +341,6 @@ func (t *SimpleChaincode) createAsset(stub shim.ChaincodeStubInterface, args []s
         return nil, err 
     }
 
-    err = pushRecentState(stub, string(stateJSON))
-    if err != nil {
-        err = fmt.Errorf("createAsset AssetID %s push to recentstates failed: %s", assetID, err)
-        log.Error(err)
-        return nil, err
-    }
-
     // save state history
     err = createStateHistory(stub, assetID, string(stateJSON))
     if err != nil {
@@ -536,13 +529,7 @@ func (t *SimpleChaincode) updateAsset(stub shim.ChaincodeStubInterface, args []s
         log.Error(err)
         return nil, err
     }
-    err = pushRecentState(stub, string(stateJSON))
-    if err != nil {
-        err = fmt.Errorf("updateAsset AssetID %s push to recentstates failed: %s", assetID, err)
-        log.Error(err)
-        return nil, err
-    }
-
+    
     // add history state
     err = updateStateHistory(stub, assetID, string(stateJSON))
     if err != nil {
@@ -832,12 +819,6 @@ func (t *SimpleChaincode) deletePropertiesFromAsset(stub shim.ChaincodeStubInter
     err = stub.PutState(assetID, []byte(stateJSON))
     if err != nil {
         err = fmt.Errorf("deletePropertiesFromAsset AssetID %s PUTSTATE failed: %s", assetID, err)
-        log.Error(err)
-        return nil, err
-    }
-    err = pushRecentState(stub, string(stateJSON))
-    if err != nil {
-        err = fmt.Errorf("deletePropertiesFromAsset AssetID %s push to recentstates failed: %s", assetID, err)
         log.Error(err)
         return nil, err
     }
