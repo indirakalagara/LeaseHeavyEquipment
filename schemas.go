@@ -19,6 +19,10 @@ var schemas = `
                                 "description": "transport entity currently in possession of asset",
                                 "type": "string"
                             },
+                            "Status": {
+                                "description": "Status of the transport entity ",
+                                "type": "string"
+                            },
                             "LoadCarried": {
                                 "description": "Load Carried by the asset in KGS.",
                                 "type": "number"
@@ -119,6 +123,10 @@ var schemas = `
                                 "description": "transport entity currently in possession of asset",
                                 "type": "string"
                             },
+                            "Status": {
+                                "description": "Status of the transport entity ",
+                                "type": "string"
+                            },
                             "LoadCarried": {
                                 "description": "Load Carried by the asset in KGS.",
                                 "type": "number"
@@ -143,10 +151,6 @@ var schemas = `
                                     }
                                 },
                                 "type": "object"
-                            },
-                            "threshold": {
-                                "description": "Load threshold inclusive in KGS.",
-                                "type": "number"
                             },
                             "timestamp": {
                                 "description": "RFC3339nanos formatted timestamp.",
@@ -265,6 +269,10 @@ var schemas = `
                           "description": "transport entity currently in possession of asset",
                           "type": "string"
                       },
+                      "Status": {
+                          "description": "Status of the transport entity ",
+                          "type": "string"
+                      },
                       "LoadCarried": {
                           "description": "Load Carried by the asset in KGS.",
                           "type": "number"
@@ -370,6 +378,10 @@ var schemas = `
               },
               "EquipProvider": {
                   "description": "transport entity currently in possession of asset",
+                  "type": "string"
+              },
+              "Status": {
+                  "description": "Status of the transport entity ",
                   "type": "string"
               },
               "LoadCarried": {
