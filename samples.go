@@ -20,7 +20,7 @@ var samples = `
             "longitude": 123.456
         },
         "threshold": 123.456,
-        "timestamp": "2017-04-11T22:21:36.536200553+05:30"
+        "timestamp": "2017-04-19T09:57:59.716913577+05:30"
     },
     "initEvent": {
         "nickname": "TRADELANE",
@@ -56,6 +56,6 @@ var samples = `
             "longitude": 123.456
         },
         "threshold": 123.456,
-        "timestamp": "2017-04-11T22:21:36.537967293+05:30"
+        "timestamp": "2017-04-19T09:57:59.717034538+05:30"
     }
 }`

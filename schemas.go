@@ -625,6 +625,30 @@ var schemas = `
             },
             "type": "object"
         },
+        "readAssetSchemas": {
+            "description": "Returns a string generated from the schema containing APIs and Objects as specified in generate.json in the scripts folder.",
+            "properties": {
+                "args": {
+                    "description": "accepts no arguments",
+                    "items": {},
+                    "maxItems": 0,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "readAssetSchemas function",
+                    "enum": [
+                        "readAssetSchemas"
+                    ],
+                    "type": "string"
+                },
+                "result": {
+                    "description": "JSON encoded object containing selected schemas",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "readRecentStates": {
             "description": "Returns the state of recently updated assets as an array of objects sorted with the most recently updated asset first. Each asset appears exactly once up to a maxmum of 20 in this version of the contract.",
             "properties": {
