@@ -106,45 +106,67 @@ var schemas = `
         "updateAsset": {
             "description": "Update the state of an asset. The one argument is a JSON encoded event. AssetID is required along with one or more writable properties. Establishes the next asset state. ",
             "properties": {
-                "DistanceTravelled": {
-                    "description": "Distance travelled by the asset.",
-                    "type": "number"
-                },
-                "EquipProvider": {
-                    "description": "transport entity currently in possession of asset",
-                    "type": "string"
-                },
-                "LoadCarried": {
-                    "description": "Load Carried by the asset in KGS.",
-                    "type": "number"
-                },
-                "assetID": {
-                    "description": "The ID of a managed asset. The resource focal point for a smart contract.",
-                    "type": "string"
-                },
-                "extension": {
-                    "description": "Application-managed state. Opaque to contract.",
-                    "properties": {},
-                    "type": "object"
-                },
-                "location": {
-                    "description": "A geographical coordinate",
-                    "properties": {
-                        "latitude": {
-                            "type": "number"
+                "args": {
+                    "description": "args are JSON encoded strings",
+                    "items": {
+                        "description": "A set of fields that constitute the writable fields in an asset's state. AssetID is mandatory along with at least one writable field. In this contract pattern, a partial state is used as an event.",
+                        "properties": {
+                            "DistanceTravelled": {
+                                "description": "Distance travelled by the asset.",
+                                "type": "number"
+                            },
+                            "EquipProvider": {
+                                "description": "transport entity currently in possession of asset",
+                                "type": "string"
+                            },
+                            "LoadCarried": {
+                                "description": "Load Carried by the asset in KGS.",
+                                "type": "number"
+                            },
+                            "assetID": {
+                                "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                                "type": "string"
+                            },
+                            "extension": {
+                                "description": "Application-managed state. Opaque to contract.",
+                                "properties": {},
+                                "type": "object"
+                            },
+                            "location": {
+                                "description": "A geographical coordinate",
+                                "properties": {
+                                    "latitude": {
+                                        "type": "number"
+                                    },
+                                    "longitude": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "threshold": {
+                                "description": "Load threshold inclusive in KGS.",
+                                "type": "number"
+                            },
+                            "timestamp": {
+                                "description": "RFC3339nanos formatted timestamp.",
+                                "type": "string"
+                            }
                         },
-                        "longitude": {
-                            "type": "number"
-                        }
+                        "required": [
+                            "assetID"
+                        ],
+                        "type": "object"
                     },
-                    "type": "object"
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
                 },
-                "threshold": {
-                    "description": "Load threshold inclusive in KGS.",
-                    "type": "number"
-                },
-                "timestamp": {
-                    "description": "RFC3339nanos formatted timestamp.",
+                "function": {
+                    "description": "updateAsset function",
+                    "enum": [
+                        "updateAsset"
+                    ],
                     "type": "string"
                 }
             },
