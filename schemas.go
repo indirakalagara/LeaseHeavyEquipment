@@ -3,105 +3,100 @@ package main
 var schemas = `
 {
     "API": {
-    "createAsset":{
-
-    "description":"Create an asset. One argument, a JSON encoded event. AssetID is required with zero or more writable properties. Establishes an initial asset state.",
-    "properties":{
-        "args":{
-            "description":"args are JSON encoded strings",
-            "items":{
-                "description":"A set of fields that constitute the writable fields in an asset's state. AssetID is mandatory along with at least one writable field. In this contract pattern, a partial state is used as an event.",
-                "properties":{
-                    "DistanceTravelled":{
-                        "description":"Distance travelled by the asset.",
-                        "type":"number"
-                    },
-                    "EquipProvider":{
-                        "description":"transport entity currently in possession of asset",
-                        "type":"string"
-                    },
-                    "LoadCarried":{
-                        "description":"Load Carried by the asset in KGS.",
-                        "type":"number"
-                    },
-                    "assetID":{
-                        "description":"The ID of a managed asset. The resource focal point for a smart contract.",
-                        "type":"string"
-                    },
-                    "extension":{
-                        "description":"Application-managed state. Opaque to contract.",
-                        "properties":{
-                        },
-                        "type":"object"
-                    },
-                    "location":{
-                        "description":"A geographical coordinate",
-                        "properties":{
-                            "latitude":{
-                                "type":"number"
-                            },
-                            "longitude":{
-                                "type":"number"
-                            }
-                        },
-                        "type":"object"
-                    },
-                    "threshold":{
-                        "description":"Load threshold inclusive in KGS.",
-                        "type":"number"
-                    },
-                    "timestamp":{
-                        "description":"RFC3339nanos formatted timestamp.",
-                        "type":"string"
-                    }
-                },
-                "required":[
-                    "assetID"
+    "readAssetSchemas": {
+        "description": "Returns a string generated from the schema containing APIs and Objects as specified in generate.json in the scripts folder.",
+        "properties": {
+            "args": {
+                "description": "accepts no arguments",
+                "items": {},
+                "maxItems": 0,
+                "minItems": 0,
+                "type": "array"
+            },
+            "function": {
+                "description": "readAssetSchemas function",
+                "enum": [
+                    "readAssetSchemas"
                 ],
-                "type":"object"
+                "type": "string"
             },
-            "maxItems":1,
-            "minItems":1,
-            "type":"array"
+            "method": "query",
+            "result": {
+                "description": "JSON encoded object containing selected schemas",
+                "type": "string"
+            }
         },
-        "function":{
-            "description":"createAsset function",
-            "enum":[
-                "createAsset"
-            ],
-            "type":"string"
-        }
+        "type": "object"
     },
-    "type":"object"
-
-},"readAssetSchemas":{
-
-    "description":"Returns a string generated from the schema containing APIs and Objects as specified in generate.json in the scripts folder.",
-    "properties":{
-        "args":{
-            "description":"accepts no arguments",
-            "items":{
+    "createAsset": {
+        "description": "Create an asset. One argument, a JSON encoded event. AssetID is required with zero or more writable properties. Establishes an initial asset state.",
+        "properties": {
+            "args": {
+                "description": "args are JSON encoded strings",
+                "items": {
+                    "description": "A set of fields that constitute the writable fields in an asset's state. AssetID is mandatory along with at least one writable field. In this contract pattern, a partial state is used as an event.",
+                    "properties": {
+                        "DistanceTravelled": {
+                            "description": "Distance travelled by the asset.",
+                            "type": "number"
+                        },
+                        "EquipProvider": {
+                            "description": "transport entity currently in possession of asset",
+                            "type": "string"
+                        },
+                        "LoadCarried": {
+                            "description": "Load Carried by the asset in KGS.",
+                            "type": "number"
+                        },
+                        "assetID": {
+                            "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                            "type": "string"
+                        },
+                        "extension": {
+                            "description": "Application-managed state. Opaque to contract.",
+                            "properties": {},
+                            "type": "object"
+                        },
+                        "location": {
+                            "description": "A geographical coordinate",
+                            "properties": {
+                                "latitude": {
+                                    "type": "number"
+                                },
+                                "longitude": {
+                                    "type": "number"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "threshold": {
+                            "description": "Load threshold inclusive in KGS.",
+                            "type": "number"
+                        },
+                        "timestamp": {
+                            "description": "RFC3339nanos formatted timestamp.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetID"
+                    ],
+                    "type": "object"
+                },
+                "maxItems": 1,
+                "minItems": 1,
+                "type": "array"
             },
-            "maxItems":0,
-            "minItems":0,
-            "type":"array"
+            "function": {
+                "description": "createAsset function",
+                "enum": [
+                    "createAsset"
+                ],
+                "type": "string"
+            }
         },
-        "function":{
-            "description":"readAssetSchemas function",
-            "enum":[
-                "readAssetSchemas"
-            ],
-            "type":"string"
-        },
-        "method":"query",
-        "result":{
-            "description":"JSON encoded object containing selected schemas",
-            "type":"string"
-        }
+        "type": "object"
     },
-    "type":"object"
-
-},
     "objectModelSchemas": {
         "assetIDKey": {
             "description": "An object containing only an assetID for use as an argument to read or delete.",
