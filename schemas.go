@@ -240,30 +240,42 @@ var schemas = `
                 "result": {
                     "description": "A set of fields that constitute the complete asset state.",
                     "properties": {
-                        "assetID": {
-                            "description": "The ID of a managed asset. The resource focal point for a smart contract.",
-                            "type": "string"
-                        },
-                        "carrier": {
-                            "description": "transport entity currently in possession of asset",
-                            "type": "string"
-                        },
-                        "location": {
-                            "description": "A geographical coordinate",
-                            "properties": {
-                                "latitude": {
-                                    "type": "number"
-                                },
-                                "longitude": {
-                                    "type": "number"
-                                }
-                            },
-                            "type": "object"
-                        },
-                        "temperature": {
-                            "description": "Temperature of the asset in CELSIUS.",
+                      "assetID": {
+                          "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                          "type": "string"
+                      },
+                      "location": {
+                          "description": "A geographical coordinate",
+                          "properties": {
+                              "latitude": {
+                                  "type": "number"
+                              },
+                              "longitude": {
+                                  "type": "number"
+                              }
+                          },
+                          "type": "object"
+                      },
+                      "DistanceTravelled": {
+                          "description": "Distance travelled by the asset.",
+                          "type": "number"
+                      },
+                      "EquipProvider": {
+                          "description": "transport entity currently in possession of asset",
+                          "type": "string"
+                      },
+                      "LoadCarried": {
+                          "description": "Load Carried by the asset in KGS.",
+                          "type": "number"
+                      },
+                      "timestamp": {
+                          "description": "RFC3339nanos formatted timestamp.",
+                          "type": "string"
+                      },
+                      "threshold": {
+                            "description": "Load threshold inclusive in KGS.",
                             "type": "number"
-                        }
+                      }
                     },
                     "type": "object"
                 }
@@ -335,30 +347,42 @@ var schemas = `
         "event": {
             "description": "A set of fields that constitute the writable fields in an asset's state. AssetID is mandatory along with at least one writable field. In this contract pattern, a partial state is used as an event.",
             "properties": {
-                "assetID": {
-                    "description": "The ID of a managed asset. The resource focal point for a smart contract.",
-                    "type": "string"
-                },
-                "carrier": {
-                    "description": "transport entity currently in possession of asset",
-                    "type": "string"
-                },
-                "location": {
-                    "description": "A geographical coordinate",
-                    "properties": {
-                        "latitude": {
-                            "type": "number"
-                        },
-                        "longitude": {
-                            "type": "number"
-                        }
-                    },
-                    "type": "object"
-                },
-                "temperature": {
-                    "description": "Temperature of the asset in CELSIUS.",
+              "assetID": {
+                  "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                  "type": "string"
+              },
+              "location": {
+                  "description": "A geographical coordinate",
+                  "properties": {
+                      "latitude": {
+                          "type": "number"
+                      },
+                      "longitude": {
+                          "type": "number"
+                      }
+                  },
+                  "type": "object"
+              },
+              "DistanceTravelled": {
+                  "description": "Distance travelled by the asset.",
+                  "type": "number"
+              },
+              "EquipProvider": {
+                  "description": "transport entity currently in possession of asset",
+                  "type": "string"
+              },
+              "LoadCarried": {
+                  "description": "Load Carried by the asset in KGS.",
+                  "type": "number"
+              },
+              "timestamp": {
+                  "description": "RFC3339nanos formatted timestamp.",
+                  "type": "string"
+              },
+              "threshold": {
+                    "description": "Load threshold inclusive in KGS.",
                     "type": "number"
-                }
+              }
             },
             "required": [
                 "assetID"
@@ -390,10 +414,6 @@ var schemas = `
                     "description": "The ID of a managed asset. The resource focal point for a smart contract.",
                     "type": "string"
                 },
-                "carrier": {
-                    "description": "transport entity currently in possession of asset",
-                    "type": "string"
-                },
                 "location": {
                     "description": "A geographical coordinate",
                     "properties": {
@@ -406,9 +426,25 @@ var schemas = `
                     },
                     "type": "object"
                 },
-                "temperature": {
-                    "description": "Temperature of the asset in CELSIUS.",
+                "DistanceTravelled": {
+                    "description": "Distance travelled by the asset.",
                     "type": "number"
+                },
+                "EquipProvider": {
+                    "description": "transport entity currently in possession of asset",
+                    "type": "string"
+                },
+                "LoadCarried": {
+                    "description": "Load Carried by the asset in KGS.",
+                    "type": "number"
+                },
+                "timestamp": {
+                    "description": "RFC3339nanos formatted timestamp.",
+                    "type": "string"
+                },
+                "threshold": {
+                      "description": "Load threshold inclusive in KGS.",
+                      "type": "number"
                 }
             },
             "type": "object"
