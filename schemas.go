@@ -625,6 +625,31 @@ var schemas = `
             },
             "type": "object"
         },
+        "readAssetSamples": {
+            "description": "Returns a string generated from the schema containing sample Objects as specified in generate.json in the scripts folder.",
+            "properties": {
+                "args": {
+                    "description": "accepts no arguments",
+                    "items": {},
+                    "maxItems": 0,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "readAssetSamples function",
+                    "enum": [
+                        "readAssetSamples"
+                    ],
+                    "type": "string"
+                },
+                "method": "query",
+                "result": {
+                    "description": "JSON encoded object containing selected sample data",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "readAssetSchemas": {
             "description": "Returns a string generated from the schema containing APIs and Objects as specified in generate.json in the scripts folder.",
             "properties": {
@@ -642,6 +667,7 @@ var schemas = `
                     ],
                     "type": "string"
                 },
+                "method": "query",
                 "result": {
                     "description": "JSON encoded object containing selected schemas",
                     "type": "string"
