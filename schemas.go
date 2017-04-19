@@ -103,6 +103,53 @@ var schemas = `
             },
             "type": "object"
         },
+        "updateAsset": {
+            "description": "Update the state of an asset. The one argument is a JSON encoded event. AssetID is required along with one or more writable properties. Establishes the next asset state. ",
+            "properties": {
+                "DistanceTravelled": {
+                    "description": "Distance travelled by the asset.",
+                    "type": "number"
+                },
+                "EquipProvider": {
+                    "description": "transport entity currently in possession of asset",
+                    "type": "string"
+                },
+                "LoadCarried": {
+                    "description": "Load Carried by the asset in KGS.",
+                    "type": "number"
+                },
+                "assetID": {
+                    "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                    "type": "string"
+                },
+                "extension": {
+                    "description": "Application-managed state. Opaque to contract.",
+                    "properties": {},
+                    "type": "object"
+                },
+                "location": {
+                    "description": "A geographical coordinate",
+                    "properties": {
+                        "latitude": {
+                            "type": "number"
+                        },
+                        "longitude": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "threshold": {
+                    "description": "Load threshold inclusive in KGS.",
+                    "type": "number"
+                },
+                "timestamp": {
+                    "description": "RFC3339nanos formatted timestamp.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "init": {
             "description": "Initializes the contract when started, either by deployment or by peer restart.",
             "properties": {
@@ -251,53 +298,6 @@ var schemas = `
             },
             "type": "object"
         },
-        "updateAsset": {
-            "description": "Update the state of an asset. The one argument is a JSON encoded event. AssetID is required along with one or more writable properties. Establishes the next asset state. ",
-            "properties": {
-                "DistanceTravelled": {
-                    "description": "Distance travelled by the asset.",
-                    "type": "number"
-                },
-                "EquipProvider": {
-                    "description": "transport entity currently in possession of asset",
-                    "type": "string"
-                },
-                "LoadCarried": {
-                    "description": "Load Carried by the asset in KGS.",
-                    "type": "number"
-                },
-                "assetID": {
-                    "description": "The ID of a managed asset. The resource focal point for a smart contract.",
-                    "type": "string"
-                },
-                "extension": {
-                    "description": "Application-managed state. Opaque to contract.",
-                    "properties": {},
-                    "type": "object"
-                },
-                "location": {
-                    "description": "A geographical coordinate",
-                    "properties": {
-                        "latitude": {
-                            "type": "number"
-                        },
-                        "longitude": {
-                            "type": "number"
-                        }
-                    },
-                    "type": "object"
-                },
-                "threshold": {
-                    "description": "Load threshold inclusive in KGS.",
-                    "type": "number"
-                },
-                "timestamp": {
-                    "description": "RFC3339nanos formatted timestamp.",
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        }
     },
     "objectModelSchemas": {
         "assetIDKey": {
