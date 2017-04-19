@@ -107,6 +107,68 @@ var schemas = `
             },
             "type": "object"
         },
+        "deleteAllAssets": {
+            "description": "Delete the state of all assets. No arguments are accepted. For each managed asset, the state and history are erased, and the asset is removed if necessary from recent states.",
+            "properties": {
+                "args": {
+                    "description": "accepts no arguments",
+                    "items": {},
+                    "maxItems": 0,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "deleteAllAssets function",
+                    "enum": [
+                        "deleteAllAssets"
+                    ],
+                    "type": "string"
+                },
+                "method": "invoke"
+            },
+            "type": "object"
+        },
+        "deletePropertiesFromAsset": {
+            "description": "Delete one or more properties from an asset. Argument is a JSON encoded string containing an AssetID and an array of qualified property names. An example would be {'assetID':'A1',['event.common.EquipProvider', 'event.customer.LoadCarried']} and the result of that invoke would be the removal of the EquipProvider field and the LoadCarried field with a recalculation of the alert and compliance status.",
+            "properties": {
+                "args": {
+                    "description": "args are JSON encoded strings",
+                    "items": {
+                        "description": "Requested assetID with a list or qualified property names.",
+                        "properties": {
+                            "assetID": {
+                                "description": "The ID of a managed asset. The resource focal point for a smart contract.",
+                                "type": "string"
+                            },
+                            "qualPropsToDelete": {
+                                "items": {
+                                    "description": "The qualified name of a property. E.g. 'event.common.EquipProvider', 'event.custom.LoadCarried', etc.",
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "assetID",
+                            "qualPropsToDelete"
+                        ],
+                        "type": "object"
+                    },
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "deletePropertiesFromAsset function",
+                    "enum": [
+                        "deletePropertiesFromAsset"
+                    ],
+                    "type": "string"
+                },
+                "method": "invoke"
+            },
+            "type": "object"
+        },
         "updateAsset": {
             "description": "Update the state of an asset. The one argument is a JSON encoded event. AssetID is required along with one or more writable properties. Establishes the next asset state. ",
             "properties": {
@@ -177,6 +239,64 @@ var schemas = `
             },
             "type": "object"
         },
+        "setCreateOnUpdate": {
+            "description": "Allow updateAsset to redirect to createAsset when assetID does not exist.",
+            "properties": {
+                "args": {
+                    "description": "True for redirect allowed, false for error on asset does not exist.",
+                    "items": {
+                        "setCreateOnUpdate": {
+                            "type": "boolean"
+                        }
+                    },
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "setCreateOnUpdate function",
+                    "enum": [
+                        "setCreateOnUpdate"
+                    ],
+                    "type": "string"
+                },
+                "method": "invoke"
+            },
+            "type": "object"
+        },
+        "setLoggingLevel": {
+            "description": "Sets the logging level in the contract.",
+            "properties": {
+                "args": {
+                    "description": "logging levels indicate what you see",
+                    "items": {
+                        "logLevel": {
+                            "enum": [
+                                "CRITICAL",
+                                "ERROR",
+                                "WARNING",
+                                "NOTICE",
+                                "INFO",
+                                "DEBUG"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "function": {
+                    "description": "setLoggingLevel function",
+                    "enum": [
+                        "setLoggingLevel"
+                    ],
+                    "type": "string"
+                },
+                "method": "invoke"
+            },
+            "type": "object"
+        },
         "init": {
             "description": "Initializes the contract when started, either by deployment or by peer restart.",
             "properties": {
@@ -186,7 +306,7 @@ var schemas = `
                         "description": "event sent to init on deployment",
                         "properties": {
                             "nickname": {
-                                "default": "SIMPLE",
+                                "default": "LHE",
                                 "description": "The nickname of the current contract",
                                 "type": "string"
                             },
@@ -406,7 +526,7 @@ var schemas = `
             "description": "event sent to init on deployment",
             "properties": {
                 "nickname": {
-                    "default": "SIMPLE",
+                    "default": "LHE",
                     "description": "The nickname of the current contract",
                     "type": "string"
                 },
