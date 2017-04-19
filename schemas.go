@@ -642,7 +642,6 @@ var schemas = `
                     ],
                     "type": "string"
                 },
-                "method": "query",
                 "result": {
                     "description": "JSON encoded object containing selected sample data",
                     "type": "string"
@@ -667,7 +666,6 @@ var schemas = `
                     ],
                     "type": "string"
                 },
-                "method": "query",
                 "result": {
                     "description": "JSON encoded object containing selected schemas",
                     "type": "string"

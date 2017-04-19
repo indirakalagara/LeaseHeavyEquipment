@@ -11,6 +11,7 @@
       "deleteAllAssets",
       "readAsset",
       "readAssetSchemas",
+      "readAssetSamples",
       "readAllAssets",
       "readAssetHistory",
       "readRecentStates",
