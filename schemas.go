@@ -331,7 +331,7 @@ var schemas = `
                 }
             },
             "type": "object"
-        },
+        }
     },
     "objectModelSchemas": {
         "assetIDKey": {
