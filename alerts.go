@@ -30,10 +30,10 @@ import (
 type Alerts int32
 
 const (
-    // AlertsOVERLOAD the over load alert 
+    // AlertsOVERLOAD the over load alert
     AlertsOVERLOAD    Alerts = 0
 
-    // AlertsSIZE is to be maintained always as 1 greater than the last alert, giving a size  
+    // AlertsSIZE is to be maintained always as 1 greater than the last alert, giving a size
 	AlertsSIZE        Alerts = 1
 )
 
@@ -64,9 +64,9 @@ var NOALERTSACTIVE = AlertNameArray{}
 
 // AlertStatusInternal contains the three possible statuses for alerts
 type AlertStatusInternal struct {
-    Active  AlertArrayInternal  
-    Raised  AlertArrayInternal  
-    Cleared AlertArrayInternal  
+    Active  AlertArrayInternal
+    Raised  AlertArrayInternal
+    Cleared AlertArrayInternal
 }
 
 type AlertStatus struct {
@@ -76,7 +76,7 @@ type AlertStatus struct {
 }
 
 // convert from external representation with slice of names
-// to full length array of bools 
+// to full length array of bools
 func (a *AlertStatus) asAlertStatusInternal() (AlertStatusInternal) {
     var aOut = AlertStatusInternal{}
     for i := range a.Active {
@@ -91,7 +91,7 @@ func (a *AlertStatus) asAlertStatusInternal() (AlertStatusInternal) {
     return aOut
 }
 
-// convert from internal representation with full length array of bools  
+// convert from internal representation with full length array of bools
 // to slice of names
 func (a *AlertStatusInternal) asAlertStatus() (AlertStatus) {
     var aOut = newAlertStatus()
@@ -159,7 +159,7 @@ func (a *AlertStatus) alertStatusFromMap (aMap map[string]interface{}) () {
     a.Active.copyFrom(aMap["active"].([]interface{}))
     a.Raised.copyFrom(aMap["raised"].([]interface{}))
     a.Cleared.copyFrom(aMap["cleared"].([]interface{}))
-} 
+}
 
 func (arr *AlertNameArray) copyFrom (s []interface{}) {
     // a conversion like this must assert type at every level
@@ -177,7 +177,7 @@ func (arr *AlertStatusInternal) NoAlertsActive() (bool) {
 func (arr *AlertStatusInternal) AllClear() (bool) {
     return  (arr.Active == NOALERTSACTIVEINTERNAL) &&
             (arr.Raised == NOALERTSACTIVEINTERNAL) &&
-            (arr.Cleared == NOALERTSACTIVEINTERNAL) 
+            (arr.Cleared == NOALERTSACTIVEINTERNAL)
 }
 
 // NoAlertsActive returns true when no alerts are active in the asset's status at this time
@@ -189,5 +189,5 @@ func (a *AlertStatus) NoAlertsActive() (bool) {
 func (a *AlertStatus) AllClear() (bool) {
     return  len(a.Active) == 0 &&
             len(a.Raised) == 0 &&
-            len(a.Cleared) == 0 
+            len(a.Cleared) == 0
 }
